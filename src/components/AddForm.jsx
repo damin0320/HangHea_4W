@@ -1,29 +1,43 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {addTodo} from "../redux/modules/todos"
-import styled
- from 'styled-components'
+import styled from 'styled-components'
+import {v4 as uuidv4} from 'uuid';
 const AddForm = () => {
-  const [title, setTitle] = useState("")
+const [todo, setTodo] = useState(
+  { 
+    title : "",
+    body : "",
+  }
+)
   const todos = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
-
+  const setChangeHandler = (e) => {
+    setTodo({
+      ...todo,
+      [e.target.name] : e.target.value
+    })
+  }
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if(title === "") return
+    if(todo.title === "" || todo.body === "" || todo.title === undefined || todo.body === undefined) {
+      // 하나만 넣으면 undefined가 뜬다.
+      return alert("빈칸을 입력해주세요")
+    }
 
     dispatch(addTodo({
-      id : todos.length + 1,
-      title,
+      id : uuidv4(),
+      title : todo.title,
+      body : todo.body, 
+      isDone : false,
     }))
   }
   return (
     <StFormContainer>
       <form onSubmit={onSubmitHandler}>
-        <label>Todos의 제목을 입력하세요</label>
-        <StInput type="text" value={title} onChange={(e) => {
-          setTitle(e.target.value)
-        }} />
+        <label>Todos의 제목과 내용을 입력하세요</label>
+        <StInput type="text" name="title" value={todos.title} onChange={setChangeHandler} />
+        <StInput type="text" name="body" value={todos.body} onChange={setChangeHandler} />
         <StButton>추가하기</StButton>
       </form>
     </StFormContainer>

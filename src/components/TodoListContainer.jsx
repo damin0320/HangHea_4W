@@ -7,7 +7,12 @@ const TodoListContainer = () => {
   return (
     <StTodos>
       {todos.map((todo) => (
-        <StTodo key={todo.id}>{todo.title}</StTodo>
+        <StTodo key={todo.id}>
+          <StTodoInner>
+          <h1>{todo.title}</h1>
+          <p>{todo.body}</p>
+          </StTodoInner>
+        </StTodo>
       ))}
     </StTodos>
   )
@@ -28,4 +33,8 @@ const StTodo = styled.div`
   align-items: center;
   padding: 0 24px;
   border-radius: 12px;
+`;
+
+const StTodoInner = styled.div`
+  align-items: center;
 `;

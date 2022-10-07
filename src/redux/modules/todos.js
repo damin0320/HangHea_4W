@@ -1,4 +1,6 @@
 // src/redux/modules/todos.js
+import {v4 as uuidv4} from 'uuid';
+
 
 // Action Value
 const ADD_TODOLIST = "ADD_TODOLIST"
@@ -12,10 +14,16 @@ export const addTodo = (payload) => {
 // Initial State
 const initialState = {
   todos : [  
-    {id : 1,
-    title : "react를 공부합시다.",},
-    {id : 2,
-      title : "redux를 공부합시다.",}]
+    {id : uuidv4(),
+    title : "react를 공부합시다.",
+    body : "챕터 1부터 챕터 12까지 학습",
+    isDone: false
+  },
+    {id : uuidv4(),
+      title : "redux를 공부합시다.",
+      body : "챕터 5부터 챕터 10까지 학습",
+      isDone: true
+    }]
 
 };
 
