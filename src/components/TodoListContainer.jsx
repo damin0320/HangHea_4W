@@ -1,24 +1,61 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { map } from 'cheerio/lib/api/traversing'
+import { useDispatch,useSelector } from 'react-redux'
 import styled from 'styled-components';
+import {deleteTodo} from "../redux/modules/todos"
+
 
 const TodoListContainer = () => {
   const {todos} = useSelector((state) => state.todos);
-  return (
-    <StTodos>
+  const dispatch = useDispatch();
+  const onDeleteHandler = (id) => {
+    dispatch(deleteTodo(id))
+  }
+    return (
+    <StTodoContainer>
+      <StWorking>
+      <h2>
+        Working~~!!
+      </h2>
+          <StTodos>
       {todos.map((todo) => (
         <StTodo key={todo.id}>
           <StTodoInner>
           <h1>{todo.title}</h1>
           <p>{todo.body}</p>
+          <StButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StButton>
+          {/* 핸들러에서 매개변수로 보내고 콜백함수로 보내준다. */}
           </StTodoInner>
+          {/* div로 나눈다. */}
         </StTodo>
       ))}
     </StTodos>
+      </StWorking>
+      <StDone>
+      <h2>
+        Done~~!!
+      </h2>
+       
+      </StDone>
+      
+    </StTodoContainer>
+
   )
 }
 
 export default TodoListContainer
+
+const StTodoContainer = styled.div`
+  max-width: 1200px;
+  min-width: 800px;
+  margin: 0 auto;
+`;
+
+const StWorking = styled.div`
+  `;
+
+const StDone = styled.div`
+  `;
 
 const StTodos = styled.div`
   display: flex;
@@ -28,7 +65,7 @@ const StTodos = styled.div`
 const StTodo = styled.div`
   border: 1px solid #ddd;
   width: 20%;
-  height: 100px;
+  height: 200px;
   display: flex;
   align-items: center;
   padding: 0 24px;
@@ -37,4 +74,13 @@ const StTodo = styled.div`
 
 const StTodoInner = styled.div`
   align-items: center;
+`;
+
+const StButton = styled.button`
+  border: none;
+  background-color: #eee;
+  height: 25px;
+  cursor: pointer;
+  width: 120px;
+  border-radius: 12px;
 `;
