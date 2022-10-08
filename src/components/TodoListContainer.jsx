@@ -2,7 +2,7 @@ import React from 'react'
 import { map } from 'cheerio/lib/api/traversing'
 import { useDispatch,useSelector } from 'react-redux'
 import styled from 'styled-components';
-import {deleteTodo} from "../redux/modules/todos"
+import {deleteTodo, changeTodo} from "../redux/modules/todos"
 
 
 const TodoListContainer = () => {
@@ -11,6 +11,11 @@ const TodoListContainer = () => {
   const onDeleteHandler = (id) => {
     dispatch(deleteTodo(id))
   }
+  const onChangeHandler = (id) => {
+    dispatch(changeTodo(id))
+  }
+
+  console.log(todos)
     return (
     <StTodoContainer>
       <StWorking>
@@ -18,13 +23,14 @@ const TodoListContainer = () => {
         Working~~!!
       </h2>
           <StTodos>
-      {todos.map((todo) => (
+      {todos.filter((todo)=> !todo.isDone).map((todo) => (
         <StTodo key={todo.id}>
           <StTodoInner>
           <h1>{todo.title}</h1>
           <p>{todo.body}</p>
           <StButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StButton>
           {/* 핸들러에서 매개변수로 보내고 콜백함수로 보내준다. */}
+          <StButton type="button" onClick={()=>{onChangeHandler(todo.id)}}>{todo.isDone ?  "취소" : "완료"}</StButton>
           </StTodoInner>
           {/* div로 나눈다. */}
         </StTodo>
@@ -35,6 +41,20 @@ const TodoListContainer = () => {
       <h2>
         Done~~!!
       </h2>
+      <StTodos>
+      {todos.filter((t)=> t.isDone).map((todo) => (
+        <StTodo key={todo.id}>
+          <StTodoInner>
+          <h1>{todo.title}</h1>
+          <p>{todo.body}</p>
+          <StButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StButton>
+          {/* 핸들러에서 매개변수로 보내고 콜백함수로 보내준다. */}
+          <StButton type="button" onClick={()=>{onChangeHandler(todo.id)}}>{todo.isDone ?  "취소" : "완료"}</StButton>
+          </StTodoInner>
+          {/* div로 나눈다. */}
+        </StTodo>
+      ))}
+    </StTodos>
        
       </StDone>
       
