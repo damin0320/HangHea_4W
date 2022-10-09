@@ -28,6 +28,7 @@ export const changeTodo = (payload) => {
     id : payload,
   }
 }
+
 // Initial State
 const initialState = {
   todos : [  
@@ -68,6 +69,7 @@ const todos = (state = initialState, action) => {
           }}),
           todos : state.todos,
         }
+
     default:
       return state;
   }
@@ -75,9 +77,20 @@ const todos = (state = initialState, action) => {
 // export default reducer
 export default todos;
 
-// Object.assign({}, {
-//   todos: state.todos.map((todo) => {if(todo.id === action.id){
-//     todo.isDone = !todo.isDone
-// }}),
-//   todo: state.todos,
-// });
+
+// const SEARCH_URL = "SEARCH_URL"
+// export const searchUrl = (payload) => {
+//   return {
+//     type : SEARCH_URL,
+//     id : payload,
+//   }
+// }
+        // case SEARCH_URL:
+        //   return {
+        //     ...state,
+        //     todos: state.todos.find((todo) => {
+        //       // find로 하나만 뽑아서 보낸다.
+        //       // 컴포넌트로 넘겨서 로직을 짜본다.
+        //       return todo.id === action.id;
+        //     }),
+        //   };
