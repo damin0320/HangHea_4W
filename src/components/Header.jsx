@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <StContainer>
       <div>My Todo List</div>
-      <div>React</div>
+      <div>React & Redux</div>
     </StContainer>
   );
 };

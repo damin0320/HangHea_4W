@@ -34,9 +34,9 @@ const TodoListContainer = () => {
             <div>
           <h1>{todo.title}</h1>
           <p>{todo.body}</p>
-          <StButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StButton>
+          <StDelButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StDelButton>
           {/* 핸들러에서 매개변수로 보내고 콜백함수로 보내준다. */}
-          <StButton type="button" onClick={()=>{onChangeHandler(todo.id)}}>{todo.isDone ?  "취소" : "완료"}</StButton>
+          <StChnButton type="button" onClick={()=>{onChangeHandler(todo.id)}}>{todo.isDone ?  "취소" : "완료"}</StChnButton>
           </div>
           </StTodoInner>
           {/* div로 나눈다. */}
@@ -57,9 +57,9 @@ const TodoListContainer = () => {
                 </StLink>         
           <h1>{todo.title}</h1>
           <p>{todo.body}</p>
-          <StButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StButton>
+          <StDelButton type="button" onClick={()=>{onDeleteHandler(todo.id)}}>삭제</StDelButton>
           {/* 핸들러에서 매개변수로 보내고 콜백함수로 보내준다. */}
-          <StButton type="button" onClick={()=>{onChangeHandler(todo.id)}}>{todo.isDone ?  "취소" : "완료"}</StButton>
+          <StChnButton type="button" onClick={()=>{onChangeHandler(todo.id)}}>{todo.isDone ?  "취소" : "완료"}</StChnButton>
           </StTodoInner>
           {/* div로 나눈다. */}
         </StTodo>
@@ -98,7 +98,7 @@ const StTodos = styled.div`
   flex-wrap: wrap;
 `;
 const StTodo = styled.div`
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   width: 20%;
   height: 200px;
   display: flex;
@@ -111,9 +111,19 @@ const StTodoInner = styled.div`
   align-items: center;
 `;
 
-const StButton = styled.button`
+const StDelButton = styled.button`
   border: none;
-  background-color: #eee;
+  background-color: red;
+  color : white;
+  height: 25px;
+  cursor: pointer;
+  width: 120px;
+  border-radius: 12px;
+`;
+
+const StChnButton = styled.button`
+  border: none;
+  background-color: greenyellow;
   height: 25px;
   cursor: pointer;
   width: 120px;

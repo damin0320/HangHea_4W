@@ -57,7 +57,7 @@ const StFormContainer = styled.div`
 
 const StButton = styled.button`
   border: none;
-  background-color: #eee;
+  background-color: skyblue;
   height: 25px;
   cursor: pointer;
   width: 120px;
@@ -65,7 +65,7 @@ const StButton = styled.button`
 `;
 
 const StInput = styled.input`
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   margin: 0 24px;
   height: 25px;
   width: 300px;
