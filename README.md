@@ -31,10 +31,12 @@ HTML / CSS / JavaScript / React / Redux / git / gitHub / Vercel
 - onChangeHandler 통한 입력값 포착 후 저장
 - submit시 dispatch에서 보낸 action 감지한 reducer 통해 state 값 변경으로 값 전달 및 등록
 <br>
+
 ### 기능 2 : 만든 TodoList 삭제
 - filter 이용하여 매개변수로 들어온 id와 todoList id 비교하여 같지 않은 값 삭제
 - reducer통한 state 값 변경
 <br>
+
 ### 기능 3 : TodoList 완료 및 취소
 - map 메서드를 활용하여 item.id와 매개변수 id와 비교 후 등록 및 취소
 - redux로 받은 값 filter 후 map으로 다시 돌려서 isDone 값에 따라 Working / Done 나누기
