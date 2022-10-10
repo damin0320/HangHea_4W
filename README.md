@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+# 항해 4주차 개인과제 2 : Redux 활용한 Todo List 만들기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+목차
 
-In the project directory, you can run:
+## 프로젝트 소개
 
-### `yarn start`
+<p align="justify">
+리액트 기본기를 바탕으로 한 TodoList 만들기<br>
+제한사항 : <br>
+  <li> 예시로 준 동일한 폴더구조를 이용하여 컴포넌트를 나눌 것</li>
+  <li> 오로지 useState 훅만을 이용하여 과제를 완성할 것</li>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## <a href="https://hanghea4w-damin0320.vercel.app/">실제 배포한 Redux TodoList</a>
 
-### `yarn test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 기술 스택
 
-### `yarn build`
+HTML / CSS / JavaScript / React / Redux / git / gitHub / Vercel
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 구현 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 기능 1 : input와 button 이용한 TodoList 등록
+- 두 개의 input을 한 번에 관리하여 값을 받음
+- onChangeHandler 통한 입력값 포착 후 저장
+- submit시 dispatch에서 보낸 action 감지한 reducer 통해 state 값 변경으로 값 전달 및 등록
+<br>
+### 기능 2 : 만든 TodoList 삭제
+- filter 이용하여 매개변수로 들어온 id와 todoList id 비교하여 같지 않은 값 삭제
+- reducer통한 state 값 변경
+<br>
+### 기능 3 : TodoList 완료 및 취소
+- map 메서드를 활용하여 item.id와 매개변수 id와 비교 후 등록 및 취소
+- redux로 받은 값 filter 후 map으로 다시 돌려서 isDone 값에 따라 Working / Done 나누기
+<br>
 
-### `yarn eject`
+### 기능 4. react- router-dom 통한 상세 페이지 구현
+- index.js, Router.jsx, app.js 사전 설정 통한 페이지 이동 세팅
+- Detail.jsx 파일 따로 관리하여 Home.jsx와 분리 후 상세 페이지 구현
+- Link 테그 이용한 홈 이동
+- useParams로 id 값 가져온 것 활용하여 /:id 로 페이지 로딩 없이 이동
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 이후 리덕스 사용 않고 Detail.jsx에서 useSelector 로 todos 값 가져온 뒤 find 메서드 이용한 상세 페이지 내용 구현
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 컴포넌트 나눈 이유
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Ducks 패턴 활용 통한 컴포넌트 나누기
 
-## Learn More
+### 1. Component
+- AddForm.jsx : input 및 추가하기 버튼 관리 일원화
+- TodoListContainer.jsx : TodoList 관련 전반 일원화(프레임, 삭제 및 완료/취소, 리스트 추가)
+> 컴포넌트 나눌 것 고려 했으나 일원화하여 관리하는 것이 유지보수에 더 용이할 것 같아 함께 관리
+- Header.jsx : 헤더 (제목)용
+- Layout.jsx : 레이아웃 조건 맞추기
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 2. Pages
+- Home.jsx : App.js 대신해 페이지 이동까지 고려한 디자인 (App.js는 Router만 로드하면 되게 설정)
+- Detail.jsx : 상세페이지. url로 따로 관리되고 있는 패턴이라 분리하여 관리
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br>
 
-### Analyzing the Bundle Size
+### 3. redux & Router
+- modules > todos.js : Action Creator, Reducer 관리 일원화하기 위한 패턴
+- shared > Router.jsx : react-router-dom 방식에 따라 Home, 상세페이지 이동 위한 설정으로 패턴 관리
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+<br>
+## 배운 점 & 아쉬운 점
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+배운 점 <br>
+- Redux 활용법(dispatch, reducer, action creator, state 상태값 통제 등...)
+- 리액트 기본기 숙달 및 react-router-dom 방식 이해
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+아쉬운 점 <br>
+- 컴포넌트 구성 시 TodoListContainer를 일원화 관리하다보니 살짝 무거운 감이 있음
+- Redux 활용까지는 잘 했으나 이론 이해가 더 필요해서 공부 더 해야함
 
-### Deployment
+<p align="justify">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+</p>
 
-### `yarn build` fails to minify
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 라이센스
+
+Copyright 2022. hang-hae99 9th W4 team 4. all rights reserved.
