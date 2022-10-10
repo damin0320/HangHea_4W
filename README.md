@@ -7,9 +7,10 @@
 
 <p align="justify">
 리액트 기본기를 바탕으로 한 TodoList 만들기<br>
-제한사항 : <br>
-  <li> 예시로 준 동일한 폴더구조를 이용하여 컴포넌트를 나눌 것</li>
-  <li> 오로지 useState 훅만을 이용하여 과제를 완성할 것</li>
+제한 및 공통 사항 : <br>
+  <li> 컴포넌트는 자유로 한다.</li>
+  <li> ducks 패턴 활용한다.</li>
+  <li> Redux를 활용한다.</li>
 </p>
 
 
